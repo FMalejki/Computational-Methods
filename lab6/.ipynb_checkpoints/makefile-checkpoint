@@ -1,0 +1,16 @@
+CC = gcc
+CFLAGS = -Wall -std=c99
+LIBS = -lgsl -lgslcblas -lm
+
+all: matrix_multiplication
+
+matrix_multiplication: matrix_multiplication.c
+	$(CC) $(CFLAGS) -o $@ $^ $(LIBS)
+
+optimized: matrix_multiplication.c
+	$(CC) $(CFLAGS) -O3 -o matrix_multiplication_optimized $^ $(LIBS)
+
+clean:
+	rm -f matrix_multiplication matrix_multiplication_optimized
+
+.PHONY: all clean optimized
